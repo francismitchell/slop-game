@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfjjmog4b7yry"]
+
+[ext_resource type="PackedScene" uid="uid://o1dphbkgxji4" path="res://arm.tscn" id="1_uy4jv"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.00109411, -0.810325, 0.58598, 0.591091, 0.472131, 0.653991, -0.806604, 0.347083, 0.478459, 5.03857, -6.17772, 3.32298)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.854323, -0.305071, 0.42079, 0, 0.809612, 0.586966, -0.519743, -0.501458, 0.69167, 6.02364, 7, 7.2388)
+
+[node name="arm" parent="." instance=ExtResource("1_uy4jv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0282497, 0, 0.113383)
