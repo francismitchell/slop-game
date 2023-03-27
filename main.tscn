@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfjjmog4b7yry"]
+[gd_scene load_steps=3 format=3 uid="uid://dfjjmog4b7yry"]
 
-[ext_resource type="PackedScene" uid="uid://o1dphbkgxji4" path="res://arm.tscn" id="1_uy4jv"]
+[ext_resource type="PackedScene" uid="uid://c7smuctdninnp" path="res://arm.tscn" id="1_8v4yh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kpo7w"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -8,7 +10,11 @@
 transform = Transform3D(-0.00109411, -0.810325, 0.58598, 0.591091, 0.472131, 0.653991, -0.806604, 0.347083, 0.478459, 5.03857, -6.17772, 3.32298)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.854323, -0.305071, 0.42079, 0, 0.809612, 0.586966, -0.519743, -0.501458, 0.69167, 6.02364, 7, 7.2388)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 6.02364, 7, 7.2388)
 
-[node name="arm" parent="." instance=ExtResource("1_uy4jv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0282497, 0, 0.113383)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.331305, 7.83046, 0)
+mesh = SubResource("SphereMesh_kpo7w")
+
+[node name="arm" parent="." instance=ExtResource("1_8v4yh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0606149, -1.26912, 9.46692)

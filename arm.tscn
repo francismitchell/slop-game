@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://o1dphbkgxji4"]
+[gd_scene load_steps=3 format=3 uid="uid://c7smuctdninnp"]
 
-[ext_resource type="PackedScene" uid="uid://duorlow2im0ec" path="res://arm.glb" id="1_551hc"]
-[ext_resource type="Script" path="res://arm.gd" id="2_px8rb"]
+[ext_resource type="PackedScene" uid="uid://duorlow2im0ec" path="res://arm.glb" id="1_uygp7"]
+[ext_resource type="Script" path="res://arm.gd" id="2_6uaq0"]
 
-[node name="arm" instance=ExtResource("1_551hc")]
-script = ExtResource("2_px8rb")
+[node name="arm" instance=ExtResource("1_uygp7")]
+script = ExtResource("2_6uaq0")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/2/rotation = Quaternion(-0.098525, 0.000474975, 0.000474975, 0.995475)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19511, 0)
+bones/0/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/2/rotation = Quaternion(-0.098525, 0.000474975, 0.000474975, 0.979475)
