@@ -10,11 +10,12 @@
 transform = Transform3D(-0.00109411, -0.810325, 0.58598, 0.591091, 0.472131, 0.653991, -0.806604, 0.347083, 0.478459, 5.03857, -6.17772, 3.32298)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 6.02364, 7, 7.2388)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.331305, 7.83046, 0)
+transform = Transform3D(-0.382667, 0, -0.923886, 0, 1, 0, 0.923886, 0, -0.382667, 10.9529, 8.25262, 2.868)
 mesh = SubResource("SphereMesh_kpo7w")
 
 [node name="arm" parent="." instance=ExtResource("1_8v4yh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0606149, -1.26912, 9.46692)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.868)
