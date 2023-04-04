@@ -4,7 +4,7 @@ extends Node3D
 var skel
 var starting_offsets = [Vector3(0, 4.43, 0), Vector3(0, 5.3, 0), Vector3(0, 1.5, 0)]
 @export var IK_bone = "Finger"
-var SamplingDistance = 0.01
+var SamplingDistance = 0.05
 var LearningRate = 0.05
 var angles = []
 var num_bones
@@ -17,14 +17,14 @@ func _ready():
 	while b < num_bones:
 		angles.append(skel.get_bone_pose_rotation(b).get_angle())
 		b += 1
-	print_debug(angles)
 	
 	
 func ForwardKinematics(angles):
+	var axes = [Vector3.BACK, Vector3.BACK, Vector3.BACK]
 	var b = 0
-	var prev_point = skel.get_bone_global_pose(b).origin
+	var prev_point = skel.get_bone_pose(b).origin
 	while b < num_bones:
-		var rot = Quaternion(Vector3.BACK, angles[b])
+		var rot = Quaternion(axes[b], angles[b])
 		var next_point = prev_point + rot * starting_offsets[b]
 		prev_point = next_point
 		b += 1
@@ -49,9 +49,14 @@ func PartialGradient(target, angles, i):
 	
 func InverseKinematics(target, angles):
 	var b = 0
+	var last_angle = 0
+	var min_angles = [0.1, 0.1, 0.01]
+	var max_angles = [PI, PI/1.1, 0.4]
 	while b < num_bones:
 		var gradient = PartialGradient(target, angles, b)
 		angles[b] -= LearningRate * gradient
+		angles[b] = clamp(angles[b], last_angle + min_angles[b], last_angle + max_angles[b])
+		last_angle = angles[b]
 		b += 1
 		
 	return angles
@@ -60,28 +65,25 @@ func InverseKinematics(target, angles):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	# Get bone from bottom of chain
 	var b = 0
 	target = get_parent().get_node("MeshInstance3D").global_transform.origin
-	angles = InverseKinematics(target, angles)
-#	print_debug(DistanceFromTarget(target, angles))
-#	print_debug(ForwardKinematics(angles))
-	var to_display = []
-	for i in range(len(angles)):
-		to_display.append(180 * angles[i] / PI)
-	print_debug(to_display)
-	
-	# Each bone has an ID that increments down the chain
-	var last_angle = 0
-	while b < num_bones:
-		var new_angle = angles[b] - last_angle
-		var new_b_rot = Quaternion(Vector3.BACK, new_angle)
-		skel.set_bone_pose_rotation(b, new_b_rot)
-#		if b == 0:
-#			print_debug(ForwardKinematics(angles), skel.get_bone_global_pose(2).origin)
-			
-#		print_debug(b, skel.get_bone_name(b))
-		last_angle = new_angle
-		b += 1
+	get_parent().get_node("Mesh2").global_transform.origin = ForwardKinematics(angles)
+	if DistanceFromTarget(target, angles) > target.z + 0.001:
+		angles = InverseKinematics(target, angles)
+
+		
+		# Each bone has an ID that increments down the chain
+		var last_angle = 0
+		while b < num_bones:
+
+			var new_angle = angles[b] - last_angle
+
+			var new_b_rot = Quaternion(Vector3.BACK, new_angle)
+			skel.set_bone_pose_rotation(b, new_b_rot)
+			last_angle = new_angle
+			b += 1
+
 

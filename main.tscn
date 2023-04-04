@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfjjmog4b7yry"]
+[gd_scene load_steps=5 format=3 uid="uid://dfjjmog4b7yry"]
 
-[ext_resource type="PackedScene" uid="uid://c7smuctdninnp" path="res://arm.tscn" id="1_8v4yh"]
+[ext_resource type="PackedScene" uid="uid://dqmlktq6str0c" path="res://arm.tscn" id="1_8v4yh"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kpo7w"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_x18pe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlsvb"]
+albedo_color = Color(1, 0.356863, 0.356863, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -14,8 +19,13 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.382667, 0, -0.923886, 0, 1, 0, 0.923886, 0, -0.382667, 10.9529, 8.25262, 2.868)
+transform = Transform3D(-0.382667, 0, -0.923886, 0, 1, 0, 0.923886, 0, -0.382667, -8.58425, -4.68945, 1)
 mesh = SubResource("SphereMesh_kpo7w")
 
 [node name="arm" parent="." instance=ExtResource("1_8v4yh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.868)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.60386, -4.53186, 0)
+mesh = SubResource("SphereMesh_x18pe")
+surface_material_override/0 = SubResource("StandardMaterial3D_rlsvb")
