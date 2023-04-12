@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqmlktq6str0c" path="res://arm.tscn" id="1_8v4yh"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_kpo7w"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_4o80a"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_x18pe"]
 
@@ -12,20 +12,20 @@ albedo_color = Color(1, 0.356863, 0.356863, 1)
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.00109411, -0.810325, 0.58598, 0.591091, 0.472131, 0.653991, -0.806604, 0.347083, 0.478459, 5.03857, -6.17772, 3.32298)
+transform = Transform3D(-0.566078, -0.220603, -0.794286, -0.170134, -0.911519, 0.374416, -0.806604, 0.347083, 0.478459, 5.03857, -6.17772, 3.32298)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.382667, 0, -0.923886, 0, 1, 0, 0.923886, 0, -0.382667, -8.58425, -4.68945, 1)
-mesh = SubResource("SphereMesh_kpo7w")
+transform = Transform3D(-0.382667, 0, -0.923886, 0, 0.088149, 0, 0.923886, 0, -0.382667, -7.43524, 7.06109, 0.652892)
+mesh = SubResource("CylinderMesh_4o80a")
 
 [node name="arm" parent="." instance=ExtResource("1_8v4yh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1.0002, 0, 0, 0, 0.999954, 0, 0, 0, 1.00016, 0, 0, 1)
 
 [node name="Mesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.60386, -4.53186, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.17424, 7.07934, 0.543608)
 mesh = SubResource("SphereMesh_x18pe")
 surface_material_override/0 = SubResource("StandardMaterial3D_rlsvb")
